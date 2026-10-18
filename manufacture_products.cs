@@ -23,7 +23,7 @@ namespace VP_Midterm_Project
         private void manufacture_products_Load(object sender, EventArgs e)
         {
             string manufacturerID = stdName;
-            string connectionString = "Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True";
+            string connectionString = DatabaseSettings.ConnectionString;
             string product_name = "";
 
             using (SqlConnection connnection = new SqlConnection(connectionString))
@@ -113,7 +113,7 @@ namespace VP_Midterm_Project
             string warehouseID = "";
             string product_id = "";
 
-            string connectionString = "Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True";
+            string connectionString = DatabaseSettings.ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

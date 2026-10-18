@@ -26,7 +26,7 @@ namespace VP_Midterm_Project
         {
             string manufacturerId = stdName;
 
-            string connectionString = "Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True";
+            string connectionString = DatabaseSettings.ConnectionString;
             SqlConnection connection = new SqlConnection(connectionString);
 
             string query = "SELECT name FROM Warehouses WHERE factory_id = @manufacturerId";

@@ -55,7 +55,7 @@ namespace VP_Midterm_Project
 
             string retrieveMessageQuery = "SELECT message FROM ManufacturingFactories WHERE factory_id = @factory_id";
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand retrieveMessageCommand = new SqlCommand(retrieveMessageQuery, connection);
                 retrieveMessageCommand.Parameters.AddWithValue("@factory_id", factory_id);
@@ -78,7 +78,7 @@ namespace VP_Midterm_Project
 
                 // Set the MESSAGE to NULL after displaying it to the manufacturer
                 string updateMessageQuery = "UPDATE ManufacturingFactories SET message = NULL WHERE factory_id = @factoryID";
-                using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
                 {
                     SqlCommand updateMessageCommand = new SqlCommand(updateMessageQuery, connection);
                     updateMessageCommand.Parameters.AddWithValue("@factoryID", factory_id);

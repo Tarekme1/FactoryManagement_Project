@@ -18,7 +18,7 @@ namespace VP_Midterm_Project
         public CustomerLoginForm()
         {
             InitializeComponent();
-            connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True");
+            connection = new SqlConnection(DatabaseSettings.ConnectionString);
         }
 
         private void LoginToYourAccount_Click(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace VP_Midterm_Project
             {
                 // Query the database for the customerId
                 string query = "SELECT cus_factory_id FROM CustomerAccounts WHERE cus_username=@username AND cus_password=@password";
-                using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
                 {
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@username", username);

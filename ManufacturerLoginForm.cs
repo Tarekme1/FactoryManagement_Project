@@ -18,7 +18,7 @@ namespace VP_Midterm_Project
         public ManufacturerLoginForm()
         {
             InitializeComponent();
-            connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True");
+            connection = new SqlConnection(DatabaseSettings.ConnectionString);
         }
 
         private void LoginToYourAccount_Click(object sender, EventArgs e)

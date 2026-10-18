@@ -43,7 +43,7 @@ namespace VP_Midterm_Project
 
             string retrieveLocationQuery = "SELECT location FROM CustomerFactories WHERE customer_factory_id = @customerID";
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand retrieveLocationCommand = new SqlCommand(retrieveLocationQuery, connection);
                 retrieveLocationCommand.Parameters.AddWithValue("@customerID", customerID);
@@ -62,7 +62,7 @@ namespace VP_Midterm_Project
 
             string retrieveFactoryIDQuery = "SELECT factory_id FROM Products WHERE product_id = @productID";
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand retrieveFactoryIDCommand = new SqlCommand(retrieveFactoryIDQuery, connection);
                 retrieveFactoryIDCommand.Parameters.AddWithValue("@productID", productID);
@@ -81,7 +81,7 @@ namespace VP_Midterm_Project
 
             string warehouseIDQuery = "SELECT warehouse_id FROM Warehouses WHERE location = @location AND factory_id = @factoryID";
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand warehouseIDQueryCommand = new SqlCommand(warehouseIDQuery, connection);
                 warehouseIDQueryCommand.Parameters.AddWithValue("@location", locationOfCustomerFactory);
@@ -98,7 +98,7 @@ namespace VP_Midterm_Project
 
             //Checking the quantity in INVENTORY 
             string query = "SELECT quantity FROM Inventory WHERE product_id = @productID AND warehouse_id = @warehouseID";
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@productID", productID);
@@ -117,7 +117,7 @@ namespace VP_Midterm_Project
 
             string retrieveProductNameQuery = "SELECT product_name FROM Products WHERE product_id = @productID";
 
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand retrieveProductNameCommand = new SqlCommand(retrieveProductNameQuery, connection);
                 retrieveProductNameCommand.Parameters.AddWithValue("@productID", productID);
@@ -138,7 +138,7 @@ namespace VP_Midterm_Project
                 int newQuantity = quantityInInventory - quantity;
                 string updateInventoryQuery = "UPDATE Inventory SET quantity = @newQuantity, last_updated = GETDATE() WHERE product_id = @productID AND warehouse_id = @warehouseID";
                 //Updating INVENTORY
-                using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
                 {
                     SqlCommand updateCommand = new SqlCommand(updateInventoryQuery, connection);
                     updateCommand.Parameters.AddWithValue("@newQuantity", newQuantity);
@@ -150,7 +150,7 @@ namespace VP_Midterm_Project
 
                 int latestOrderID = 0;
                 string queryyy = "SELECT TOP 1 order_id FROM Orders ORDER BY order_id DESC";
-                using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
                 {
                     SqlCommand commanddd = new SqlCommand(queryyy, connection);
                     connection.Open();
@@ -165,7 +165,7 @@ namespace VP_Midterm_Project
 
                 //Inserting into ORDERS
                 string insertOrdersQuery = "INSERT INTO Orders (order_id, quantity, product_id, customer_id, order_date) VALUES (@latestOrderID, @quantity, @productID, @customerID, GETDATE())";
-                using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
                 {
                     SqlCommand insertCommand = new SqlCommand(insertOrdersQuery, connection);
                     insertCommand.Parameters.AddWithValue("@quantity", quantity);
@@ -186,7 +186,7 @@ namespace VP_Midterm_Project
                 string message = $"A customer placed an order for {quantity} {productName.TrimEnd()} from your warehouse in {locationOfCustomerFactory.TrimEnd()} but the avaialbe quantity was only {quantityInInventory}! So you need to manufacture {newQuantity} of it more and send it to your warehouse in {locationOfCustomerFactory.TrimEnd()}";
                 string updateMessageQuery = "UPDATE ManufacturingFactories SET message = @message WHERE factory_id = @factoryID";
 
-                using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+                using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
                 {
                     SqlCommand updateMessageCommand = new SqlCommand(updateMessageQuery, connection);
                     updateMessageCommand.Parameters.AddWithValue("@message", message);

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,6 +84,8 @@
       <DependentUpon>manufacture_products.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="DatabaseSettings.cs" />
+    <Compile Include="OrderQuantityValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="quantity.cs">
       <SubType>Form</SubType>

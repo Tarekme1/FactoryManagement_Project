@@ -29,7 +29,7 @@ namespace VP_Midterm_Project
             string warehouseName = inputString.Substring(0, index);
             string mfID = inputString.Substring(index + delimiter.Length);
 
-            string connectionString = "Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True";
+            string connectionString = DatabaseSettings.ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

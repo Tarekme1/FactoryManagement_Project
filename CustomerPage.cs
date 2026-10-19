@@ -26,7 +26,7 @@ namespace VP_Midterm_Project
             string customerCompany = "";
 
             // create a connection to the database
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 // open the connection
                 connection.Open();

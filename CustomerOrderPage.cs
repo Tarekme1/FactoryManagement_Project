@@ -32,7 +32,7 @@ namespace VP_Midterm_Project
             string customerID = input.Substring(cfIndex, input.Length - cfIndex);
 ;
             string categoryId = "";
-            string connectionString = "Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True";
+            string connectionString = DatabaseSettings.ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -105,7 +105,7 @@ namespace VP_Midterm_Project
             string productID = "";
 
             string query = "SELECT product_price FROM Products WHERE product_name = @ProductName";
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ProductName", productName);
@@ -119,7 +119,7 @@ namespace VP_Midterm_Project
             }
 
             string queryy = "SELECT product_id FROM Products WHERE product_name = @ProductName";
-            using (SqlConnection connection = new SqlConnection("Data Source=DESKTOP-1HNI20Q\\SQLEXPRESS;Initial Catalog=FactoryManagement;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(DatabaseSettings.ConnectionString))
             {
                 SqlCommand commandd = new SqlCommand(queryy, connection);
                 commandd.Parameters.AddWithValue("@ProductName", productName);

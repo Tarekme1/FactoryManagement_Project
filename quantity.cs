@@ -26,9 +26,9 @@ namespace VP_Midterm_Project
             string quantity1 = textBox.Text;
             int quantity;
 
-            if (!int.TryParse(quantity1, out quantity))
+            if (!OrderQuantityValidator.TryGetPositiveQuantity(quantity1, out quantity))
             {
-                MessageBox.Show("Please enter an integer.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a whole quantity greater than zero.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
